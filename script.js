@@ -5,14 +5,7 @@ const api = {
     units:"metric"
 } 
 
-const apiGeo = {
-  key: "50f90d69473f1c0ec36af97510d347a5",
-  base: "https://api.openweathermap.org/data/2.5/",
-  lang: "pt_br",
-  units:"metric"
-} 
 const city = document.querySelector('.city');
-const state = document.querySelector('.state');
 const date = document.querySelector('.date');
 const container_img = document.querySelector('.container-img');
 const container_temp = document.querySelector('.container-temp');
@@ -89,9 +82,7 @@ function searchResults(city) {
 function displayResults(weather) {
   console.log(weather)
 
-  city.innerText = `${weather.name}`;
-
-  state.innerText = ${weather.sys.country};
+  city.innerText = `${weather.name}, ${weather.sys.country}`;
 
   let now = new Date();
  date.innerText = dateBuilder(now);
