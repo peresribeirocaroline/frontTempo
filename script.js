@@ -6,10 +6,8 @@ const api = {
 } 
 
 const apiGeo = {
-  key: "50f90d69473f1c0ec36af97510d347a5",
-  base: "https://api.openweathermap.org/data/2.5/",
-  lang: "pt_br",
-  units:"metric"
+  key: "8b058d8646a12c948b9f3af9e06a8c96",
+  base: "https://apiadvisor.climatempo.com.br/api/v1/locale/"
 } 
 const city = document.querySelector('.city');
 const state = document.querySelector('.state');
@@ -89,9 +87,11 @@ function searchResults(city) {
 function displayResults(weather) {
   console.log(weather)
 
+  searchState(weather.coord.lon, weather.coord.lat)
+  
   city.innerText = `${weather.name}`;
 
-  state.innerText = ${weather.sys.country};
+  state.innerText = `${weather.sys.country}`;
 
   let now = new Date();
  date.innerText = dateBuilder(now);
@@ -105,6 +105,27 @@ function displayResults(weather) {
 
   weather_t.innerHTML = weather.weather[0].description;
 
+}
+
+function searchState(lon, lat) {
+  //console.log(lon)
+  //console.log(lat)
+  fetch(`http://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`, { //${apiGeo.base}city?name=${a}&token=${apiGeo.key}`, {
+    method: 'GET',
+  })
+  .then(response => {
+    console.log(response.json());
+    cityCountry(response)
+  })
+  .then(response =>{
+    //cityCountry(response)
+  })
+} 
+
+function cityCountry(ctjson) {
+  console.log(ctjson)
+  console.log(ctjson.address)
+  state.innerText = `${ctjson.address.state}, ${ctjson}`
 }
 
 function dateBuilder(d) {

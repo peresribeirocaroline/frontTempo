@@ -15,11 +15,12 @@
 .container-temp {
 display: flex;
 justify-content: center;
-background-color: rgba(0, 0, 0, 0.2);
-box-shadow: 5px 6px rgba(0, 0, 0, 0.6);
+background-color: rgba(143, 132, 141, 0.2);
+border-radius: 5%;
+box-shadow: 5px 6px rgba(170, 151, 151, 0.6);
 cursor: pointer;
 
-font-size: 100px;
+font-size: 80px;
 font-weight: 900;
 text-shadow: 3px 6px rgba(0, 0, 0, 0.2);
 }
