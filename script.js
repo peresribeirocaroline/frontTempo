@@ -107,6 +107,7 @@ function displayResults(weather) {
 
   weather_t.innerHTML = weather.weather[0].description;
 
+  low_high.innerHTML = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
 }
 
 function searchStatebyGPS(lon, lat) {
