@@ -11,10 +11,12 @@
 .container-temp {
 display: flex;
 justify-content: center;
+
 background-color: rgba(150, 105, 48, 0.2);
 box-shadow: 5px 6px rgba(78, 48, 67, 0.6);
 cursor: pointer;
 border-radius: 5%;
+
 font-size: 80px;
 font-weight: 900;
 text-shadow: 3px 6px rgba(0, 0, 0, 0.2);

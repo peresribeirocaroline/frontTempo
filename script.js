@@ -5,6 +5,10 @@ const api = {
     units:"metric"
 } 
 
+const apiGeo = {
+  base: "http://nominatim.openstreetmap.org"
+} 
+
 const city = document.querySelector('.city');
 const date = document.querySelector('.date');
 const container_img = document.querySelector('.container-img');
@@ -45,7 +49,7 @@ function coordResults(lat, long) {
     alert(error.message)
    })
    .then(response => {
-    displayResults (response)
+    displayResultsbyGPS (response)
    });
 } 
 
@@ -75,15 +79,21 @@ function searchResults(city) {
     alert(error.message)
    })
    .then(response => {
-    displayResults (response)
+    displayResultsbySearch (response)
    });
 } 
 
+function displayResultsbyGPS(weather){
+  searchStatebyGPS(weather.coord.lon, weather.coord.lat)  
+  displayResults(weather)
+}
+function displayResultsbySearch(weather){
+  searchStatebySearch(weather.coord.lon, weather.coord.lat)  
+  displayResults(weather)
+}
+
 function displayResults(weather) {
-  console.log(weather)
-
-  city.innerText = `${weather.name}, ${weather.sys.country}`;
-
+  
   let now = new Date();
  date.innerText = dateBuilder(now);
 
@@ -96,6 +106,42 @@ function displayResults(weather) {
 
   weather_t.innerHTML = weather.weather[0].description;
 
+  low_high.innerHTML = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
+}
+
+function searchStatebyGPS(lon, lat) {
+
+  fetch(`${apiGeo.base}/reverse?format=json&lat=${lat}&lon=${lon}`, {
+    method: 'GET',
+  })
+  .then(response => {
+    return response.json()
+  })
+  .then(response => {
+    cityCountrybyGPS(response)
+  })
+} 
+function searchStatebySearch(lon, lat) {
+
+  fetch(`${apiGeo.base}/reverse?format=json&lat=${lat}&lon=${lon}`, {
+    method: 'GET',
+  })
+  .then(response => {
+    return response.json()
+  })
+  .then(response => {
+    cityCountrybySearch(response)
+  })
+} 
+
+function cityCountrybyGPS(ctjson) {
+  city.innerText = `${ctjson.address.suburb}`;
+  state.innerText = `${ctjson.address.state}, ${ctjson.address.country}`
+}
+
+function cityCountrybySearch(ctjson) {
+  city.innerText = `${ctjson.address.city}`;
+  state.innerText = `${ctjson.address.state}, ${ctjson.address.country}`
 }
 
 function dateBuilder(d) {
