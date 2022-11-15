@@ -11,6 +11,7 @@ const apiGeo = {
 
 const city = document.querySelector('.city');
 const date = document.querySelector('.date');
+const state = document.querySelector('.state');
 const container_img = document.querySelector('.container-img');
 const container_temp = document.querySelector('.container-temp');
 const temp_number = document.querySelector('.container-temp div');
@@ -118,6 +119,7 @@ function searchStatebyGPS(lon, lat) {
     return response.json()
   })
   .then(response => {
+    
     cityCountrybyGPS(response)
   })
 } 
@@ -135,6 +137,8 @@ function searchStatebySearch(lon, lat) {
 } 
 
 function cityCountrybyGPS(ctjson) {
+  console.log(ctjson.address.state)
+  console.log(ctjson.address.country)
   city.innerText = `${ctjson.address.suburb}`;
   state.innerText = `${ctjson.address.state}, ${ctjson.address.country}`
 }
