@@ -10,7 +10,6 @@ const apiGeo = {
 } 
 
 const city = document.querySelector('.city');
-const state = document.querySelector('.state');
 const date = document.querySelector('.date');
 const container_img = document.querySelector('.container-img');
 const container_temp = document.querySelector('.container-temp');

@@ -8,17 +8,14 @@
 
 }
 
-.state{
-    font-size: 20px
-
-}
 .container-temp {
 display: flex;
 justify-content: center;
-background-color: rgba(143, 132, 141, 0.2);
-border-radius: 5%;
-box-shadow: 5px 6px rgba(170, 151, 151, 0.6);
+
+background-color: rgba(150, 105, 48, 0.2);
+box-shadow: 5px 6px rgba(78, 48, 67, 0.6);
 cursor: pointer;
+border-radius: 5%;
 
 font-size: 80px;
 font-weight: 900;
